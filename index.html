@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,10 +49,10 @@
 </html>
 
 
- <nav class="navbar navbar-expand-lg sticky-top">
+ <nav class="navbar navbar-expand-lg sticky-top bg-dark">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="#inicio">
-      <img src="745ad88e-35a2-4b46-ac3e-95f03bee714c.png" alt="Logo CyberSphere" style="height: 40px; margin-right: 10px;">
+    <a class="navbar-brand d-flex align-items-center text-white" href="#inicio">
+      <img src="745ad88e-35a2-4b46-ac3e-95f03bee714c.png" alt="Logo CyberSphere" style="height: 40px; margin-right: 10px;" />
       CyberSphere
     </a>
     <button
@@ -66,17 +68,51 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <a class="nav-link active" href="#inicio">Inicio</a>
-        <a class="nav-link" href="#servicios">Servicios</a>
-        <a class="nav-link" href="#sobre-nosotros">Sobre Nosotros</a>
-        <a class="nav-link" href="#testimonios">Testimonios</a>
-        <a class="nav-link" href="#contacto">Contacto</a>
-        <a class="nav-link" href="#blog">Blog</a>
-        <a class="nav-link" href="#beneficios">Beneficios</a>
+        <a class="nav-link active text-white" href="#inicio">Inicio</a>
+        <a class="nav-link text-white" href="#servicios">Servicios</a>
+        <a class="nav-link text-white" href="#sobre-nosotros">Sobre Nosotros</a>
+        <a class="nav-link text-white" href="#testimonios">Testimonios</a>
+        <a class="nav-link text-white" href="#contacto">Contacto</a>
+        <a class="nav-link text-white" href="#blog">Blog</a>
+        <a class="nav-link text-white" href="#beneficios">Beneficios</a>
       </div>
     </div>
   </div>
 </nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll('.nav-link');
+    const secciones = document.querySelectorAll('section'); // asegúrate que tus secciones tienen estos IDs
+
+    // Mostrar solo "inicio" al cargar
+    secciones.forEach(sec => sec.style.display = 'none');
+    const inicio = document.getElementById('inicio');
+    if (inicio) inicio.style.display = 'block';
+
+    links.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href').substring(1);
+
+        secciones.forEach(sec => (sec.style.display = 'none'));
+
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) targetSection.style.display = 'block';
+
+        links.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+
+        // Cerrar menú en móvil al seleccionar (Bootstrap)
+        const navbarCollapse = document.getElementById('navbarNavAltMarkup');
+        if (navbarCollapse.classList.contains('show')) {
+          new bootstrap.Collapse(navbarCollapse).toggle();
+        }
+      });
+    });
+  });
+</script>
 
 
  <!-- Carrusel de inicio -->
